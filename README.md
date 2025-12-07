@@ -1,83 +1,271 @@
-<!-- Public Endpoints (No Token Needed): -->
-POST /register - Register
-POST /login - Login
-
-<!-- Protected Endpoints (Need Token): -->
-GET /user-profile - Get profile
-GET /profile - Get profile
-PUT /profile - Update profile
-POST /change-password - Change password
-POST /logout - Logout
-
-<!-- Admin-Only Endpoints (Need Admin Token): -->
-GET /users - List all users
-GET /users/{id} - Get specific user
-PUT /users/{id} - Update user
-DELETE /users/{id} - Delete user
-POST /users/{id}/change-role - Change role
-POST /users/search - Search users
-GET /users/statistics - Get statistics
-GET /users/activity - Get activity
-POST /users/bulk-update-roles - Bulk update
-GET /users/export - Export users
-POST /create-admin - Create admin
-
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel Authentication & User Management API
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+    <a href="https://laravel.com" target="_blank">
+        <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="350">
+    </a>
 </p>
 
-## About Laravel
+<p align="center">
+    <img src="https://img.shields.io/badge/Laravel-12-FF2D20?style=for-the-badge&logo=laravel">
+    <img src="https://img.shields.io/badge/PHP-8.2+-777BB4?style=for-the-badge&logo=php">
+    <img src="https://img.shields.io/badge/MySQL-8.0+-4479A1?style=for-the-badge&logo=mysql">
+    <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge">
+</p>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+A complete RESTful API for authentication, user management, and role-based access control built using Laravel 12 and Laravel Sanctum.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+# ✨ Features
 
-## Learning Laravel
+### 🔐 Authentication
+- Laravel Sanctum Token-based login
+- Registration, login, logout
+- Change password
+- Update profile
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### 👥 User Management
+- Full CRUD (Admin Only)
+- Role-Based Access Control (Admin/User)
+- Activity logs
+- User analytics
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 📊 Advanced System Capabilities
+- Search & filtering
+- CSV/JSON export
+- Pagination support
+- Bulk operations
 
-## Laravel Sponsors
+### 🔒 Security
+- Password hashing
+- Input validation
+- SQL injection prevention
+- CORS ready
+- Rate limiting ready
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+# 🚀 Quick Start
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## Prerequisites
+- PHP 8.2+
+- Composer
+- MySQL 8+
+- Laravel 12
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Installation
 
-## Code of Conduct
+### 1. Clone
+```bash
+git clone <your-repo-url>
+cd auth-app
+composer install
+cp .env.example .env
+php artisan key:generate
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 2. Configure Database
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel_auth
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-## Security Vulnerabilities
+### 3. Migrate & Seed
+```bash
+php artisan migrate
+php artisan db:seed --class=AdminUserSeeder
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 4. Start the Server
+```bash
+php artisan serve
+```
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# 📚 API Documentation
+
+## 🔓 Public Endpoints
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | /api/register | Register new user |
+| POST | /api/login | Login user |
+
+---
+
+## 🔐 Authenticated User Endpoints
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | /api/user-profile | Get logged-in user |
+| GET | /api/profile | View own profile |
+| PUT | /api/profile | Update own profile |
+| POST | /api/change-password | Change password |
+| POST | /api/logout | Logout user |
+
+---
+
+## 👑 Admin Endpoints
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | /api/users | List users |
+| GET | /api/users/{id} | Get user details |
+| PUT | /api/users/{id} | Update user |
+| DELETE | /api/users/{id} | Delete user |
+| POST | /api/users/{id}/change-role | Update user role |
+| POST | /api/users/search | Advanced search |
+| GET | /api/users/statistics | User stats |
+| GET | /api/users/activity | Activity log |
+| PUT | /api/users/bulk-update-roles | Bulk role updates |
+| GET | /api/users/export | Export users |
+| POST | /api/create-admin | Create admin |
+
+---
+
+# 🎯 Example Requests
+
+### Registration
+```bash
+curl -X POST http://localhost:8000/api/register \
+  -H "Content-Type: application/json" \
+  -d '{ "first_name":"John","last_name":"Doe","email":"john@example.com","password":"Password@123","password_confirmation":"Password@123" }'
+```
+
+### Login
+```bash
+curl -X POST http://localhost:8000/api/login \
+  -H "Content-Type: application/json" \
+  -d '{ "email":"admin@example.com","password":"AdminPassword123" }'
+```
+
+---
+
+# 🗄️ Database Schema (Users Table)
+```sql
+CREATE TABLE users (
+    id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('admin', 'user') DEFAULT 'user',
+    first_login TIMESTAMP NULL,
+    last_login TIMESTAMP NULL,
+    email_verified_at TIMESTAMP NULL,
+    remember_token VARCHAR(100) NULL,
+    created_at TIMESTAMP NULL,
+    updated_at TIMESTAMP NULL
+);
+```
+
+---
+
+# 🔧 Project Structure
+```
+auth-app/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── AuthController.php
+│   │   │   └── UserController.php
+│   ├── Models/
+│   └── Providers/
+├── database/
+│   ├── migrations/
+│   └── seeders/
+├── routes/
+│   └── api.php
+├── tests/
+└── README.md
+```
+
+---
+
+# 🧪 Testing
+
+### Default Seeded Accounts
+| Role | Email | Password |
+|------|--------|-----------|
+| Admin | admin@example.com | AdminPassword123 |
+| User | user@example.com | UserPassword123 |
+
+Use Postman collection to test all endpoints.
+
+---
+
+# 🛡️ Security Features
+
+✔ Bcrypt password hashing  
+✔ Sanctum API tokens  
+✔ Role-based permissions  
+✔ Validation rules  
+✔ CORS configured  
+✔ SQL Injection protection  
+✔ Rate limiting ready  
+
+---
+
+# 📊 API Response Samples
+
+### Success
+```json
+{
+  "message": "Operation successful",
+  "data": {}
+}
+```
+
+### Error
+```json
+{
+  "message": "Validation failed",
+  "errors": {
+    "email": ["Invalid email"]
+  }
+}
+```
+
+---
+
+# 🔍 Search & Filter
+
+### GET
+```
+/api/users?page=1&per_page=20&role=admin&search=john
+```
+
+### POST
+```json
+{
+  "search": "john",
+  "role": "admin",
+  "sort_by": "name",
+  "sort_order": "asc"
+}
+```
+
+---
+
+# 📤 Export
+
+| Format | Endpoint |
+|--------|----------|
+| JSON | /api/users/export?format=json |
+| CSV | /api/users/export?format=csv |
+
+---
+
+# 🚨 Error Codes
+| Code | Message | Fix |
+|------|---------|-----|
+| 401 | Unauthorized | Add valid token |
+| 403 | Forbidden | Admin required |
+| 404 | Not Found | Invalid ID |
+| 422 | Validation error | Fix input |
+| 500 | Server error | Check logs |
